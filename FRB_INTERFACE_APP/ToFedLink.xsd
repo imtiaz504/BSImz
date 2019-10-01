@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.temenos.com/T24/event/T24ToFedLink/ToFedLink/tofedlink" xmlns:tofedlink="http://www.temenos.com/T24/event/T24ToFedLink/ToFedLink/tofedlink">
+
+<xsd:annotation xml:space="preserve">
+<xsd:appinfo source="http://www.ibm.com/xmlns/prod/j2ca/versionCompatability">
+<info:resourceAdapter xmlns:info="http://www.ibm.com/xmlns/prod/j2ca/versionCompatability" version="7.5.0.0"/>
+</xsd:appinfo>
+</xsd:annotation>
+
+<xsd:complexType name="ToFedLink">
+<xsd:annotation xml:space="preserve">
+
+
+</xsd:annotation>
+<xsd:sequence minOccurs="1" maxOccurs="1">
+</xsd:sequence>
+</xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,13 @@
+SET BROKERNAME="FRB.IIB.PROD"
+SET WORKPATH="D:\IIBDATA\FRB"
+SET BROKERQMGR="FRB.MQ.PROD"
+SET USRLILPATH="C:\Temenos\IIB\runtime\FIX"
+SET DBUSER="AppAcc_CleanSlate"
+SET DBPASSWORD="CleanSlate123"
+SET INTGSERVER="FRB.BRK.PROD"
+
+mqsicreatebroker %BROKERNAME% -q %BROKERQMGR% -w %WORKPATH%
+mqsichangebroker %BROKERNAME% -l %USRLILPATH%
+mqsichangeauthmode %BROKERNAME% -s active -m mq
+mqsisetdbparms %BROKERNAME% -n odbc::BancoIHDSN -u %DBUSER% -p %DBPASSWORD%
+mqsicreateexecutiongroup %BROKERNAME% -e %INTGSERVER%

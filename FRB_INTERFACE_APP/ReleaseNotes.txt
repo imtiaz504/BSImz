@@ -1,0 +1,18 @@
+Update Notes
+-------------
+
+11/14/2018
+adding the functionality of rejected FRB payment capture.
+
+10/17/2018
+Addition of BancoReconcile logic to process the statement file and output the
+wire messages to debit and credit file
+
+10/4/2018
+Code change for incoming advice to handle the ofsTransactionProcessed but without
+imad and omad make it eligible for reprocess File being changed is
+"WIRE_FEDLINK_TO_T24_INCOMING_POSTPROCESSOR_ESQL_PROCESS.esql"
+
+09/27/2018
+Removed the hardcode references for status and t24 properties
+reconcile flow is created this needs push of db properties

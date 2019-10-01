@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fmt="http://www.ibm.com/dfdl/GeneralPurposeFormat" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+	
+	
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/GeneralPurposeFormat" schemaLocation="GeneralPurposeFormat.xsd"/>
+                <xsd:complexType name="Page">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element name="HDG1" type="HDG1"/>
+      <xsd:element name="HDG2" type="HDG2"/>
+      <xsd:element name="HDG2A" type="HDG2A"/>
+      <xsd:element name="HDG3" type="HDG3"/>
+      <xsd:element name="HDG4" type="HDG4"/>
+      <xsd:element name="HDG4A" type="HDG4A"/>
+      <xsd:element name="HDG4B" type="HDG4B"/>
+      <xsd:element name="HDG5" type="HDG5"/>
+      <xsd:element maxOccurs="2" minOccurs="2" name="HDG5B" type="HDG5B"/>
+                <xsd:element name="HDG5A" type="HDG5A"/>
+            <xsd:element maxOccurs="2" minOccurs="2" name="HDG5AB" type="HDG5B"/>
+            <xsd:element name="HDG6" type="HDG6"/>
+            <xsd:element name="HDG7" type="HDG7"/>
+            <xsd:element maxOccurs="41" minOccurs="41" name="STMT-LNS" type="STMT-DETAIL"/>
+        </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="STMT-DETAIL">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="IMAD-CYC-DT" type="xsd:string"/>
+      <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" name="IMAD-LTERM" type="xsd:string"/>
+      <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" name="IMAD-SEQ-NR" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+                  <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="IMAD-TIME" type="xsd:string"/>
+            <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+            <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="STMT-TYPE" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+      <xsd:element dfdl:length="16" dfdl:lengthKind="explicit" name="STMT-REF-NR" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER5" type="xsd:string"/>
+      <xsd:element dfdl:length="9" dfdl:lengthKind="explicit" name="OTHER-ACCT" type="xsd:string"/>
+      <xsd:element dfdl:length="18" dfdl:lengthKind="explicit" name="STMT-AMT" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="DEBIT-OR-CR" type="xsd:string"/>
+      <xsd:element dfdl:length="58" dfdl:lengthKind="explicit" name="FILLER6" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="Header">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" name="URC" type="xsd:string"/>
+      <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" name="MSG-ID" type="xsd:string"/>
+      <xsd:element dfdl:length="2" dfdl:lengthKind="explicit" name="RELEASE-ID" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="MST-STAT" type="xsd:string"/>
+      <xsd:element dfdl:length="3" dfdl:lengthKind="explicit" dfdl:textNumberPattern="#0" name="PRNT-LN-SIZE" type="xsd:integer"/>
+      <xsd:element dfdl:length="2" dfdl:lengthKind="explicit" dfdl:textNumberPattern="#0" name="MAX-NO-LNS" type="xsd:integer"/>
+      <xsd:element dfdl:length="2" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG7">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="18" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER5" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER6" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER7" type="xsd:string"/>
+      <xsd:element dfdl:length="16" dfdl:lengthKind="explicit" name="FILLER8" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER9" type="xsd:string"/>
+      <xsd:element dfdl:length="9" dfdl:lengthKind="explicit" name="FILLER10" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER11" type="xsd:string"/>
+      <xsd:element dfdl:length="17" dfdl:lengthKind="explicit" name="FILLER12" type="xsd:string"/>
+      <xsd:element dfdl:length="59" dfdl:lengthKind="explicit" name="FILLER13" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG6">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="7" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+      <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER5" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER6" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER7" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER8" type="xsd:string"/>
+      <xsd:element dfdl:length="10" dfdl:lengthKind="explicit" name="FILLER9" type="xsd:string"/>
+      <xsd:element dfdl:length="4" dfdl:lengthKind="explicit" name="FILLER10" type="xsd:string"/>
+      <xsd:element dfdl:length="9" dfdl:lengthKind="explicit" name="FILLER11" type="xsd:string"/>
+      <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" name="FILLER12" type="xsd:string"/>
+      <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" name="FILLER13" type="xsd:string"/>
+      <xsd:element dfdl:length="65" dfdl:lengthKind="explicit" name="FILLER14" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG5A">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="26" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="11" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+      <xsd:element dfdl:length="2" dfdl:lengthKind="explicit" name="BUSN-NR" type="xsd:string"/>
+      <xsd:element dfdl:length="3" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+      <xsd:element dfdl:length="15" dfdl:lengthKind="explicit" name="BUSN-NAME" type="xsd:string"/>
+      <xsd:element dfdl:length="75" dfdl:lengthKind="explicit" name="FILLER5" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG5B">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="132" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+                        </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG5">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="36" dfdl:lengthKind="explicit" name="CITY-ST-ZIP" type="xsd:string"/>
+      <xsd:element dfdl:length="96" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG4B">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="36" dfdl:lengthKind="explicit" name="ADDR-LINE3" type="xsd:string"/>
+      <xsd:element dfdl:length="96" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG4A">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="36" dfdl:lengthKind="explicit" name="ADDR-LINE2" type="xsd:string"/>
+      <xsd:element dfdl:length="96" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG4">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="36" dfdl:lengthKind="explicit" name="ADDR-LINE1" type="xsd:string"/>
+      <xsd:element dfdl:length="96" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG3">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="36" dfdl:lengthKind="explicit" name="CUST-NAME" type="xsd:string"/>
+      <xsd:element dfdl:length="17" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="10" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+      <xsd:element dfdl:length="11" dfdl:lengthKind="explicit" name="ACCT-NR" type="xsd:string"/>
+      <xsd:element dfdl:length="58" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG2A">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="132" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG2">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="LN-TYPE" type="xsd:string"/>
+      <xsd:element dfdl:length="26" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="18" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" name="CLOSE-DATE" type="xsd:string"/>
+      <xsd:element dfdl:length="80" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:complexType name="HDG1">
+    <xsd:sequence dfdl:separator="">
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="LN-TYPE" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="DIST-ALPHA" type="xsd:string"/>
+      <xsd:element dfdl:length="2" dfdl:lengthKind="explicit" name="DIST-NUMBER" type="xsd:string"/>
+      <xsd:element dfdl:length="1" dfdl:lengthKind="explicit" name="DIST-RO" type="xsd:string"/>
+      <xsd:element dfdl:length="25" dfdl:lengthKind="explicit" name="FILLER1" type="xsd:string"/>
+      <xsd:element dfdl:length="20" dfdl:lengthKind="explicit" name="FILLER2" type="xsd:string"/>
+      <xsd:element dfdl:length="23" dfdl:lengthKind="explicit" name="FILLER3" type="xsd:string"/>
+      <xsd:element dfdl:length="5" dfdl:lengthKind="explicit" name="FILLER4" type="xsd:string"/>
+      <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" name="STMT-PAGE" type="xsd:string"/>
+      <xsd:element dfdl:length="49" dfdl:lengthKind="explicit" name="FILLER5" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+    <xsd:element ibmSchExtn:docRoot="true" name="Fed_Stmt">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+        <xsd:element name="Header" type="Header"/>
+                      <xsd:element dfdl:occursCountKind="implicit" maxOccurs="unbounded" name="PAGES" type="Page"/>
+            </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" ref="fmt:GeneralPurposeFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+	
+
+</xsd:schema>

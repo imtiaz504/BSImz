@@ -1,0 +1,192 @@
+/*
+Author 		  : Intiaz Shaik
+
+Description   : This esql will receive  the incoming acknowledgement from FRB and post to Fedlink
+			  	From the incoming confirmation this will determine the outgoing wire and update the
+			  	fields accordingly. If the incoming confirmation cannot be matched to any outbound wires
+			  	then it will be saved as an exception to DB.
+
+Last Modified : 08/14/2018
+
+Enhancement List : 
+------------------
+
+Fix List : 
+----------  
+08/14/2018 : fixing to follow the requirement to put the duplicate confirmation in just audit,
+			 ack and exception tables
+
+*/
+BROKER SCHEMA WIRE.FRB.TO.FEDLINK.OUTGOING.CONFIRMATION
+
+PATH BANCO_UTILITIES;
+
+DECLARE CACHE SHARED ROW;
+DECLARE INITIAL_CODE EXTERNAL INTEGER 1005;
+DECLARE FINAL_CODE EXTERNAL INTEGER 1006;
+DECLARE INITIAL_REJECT_CODE EXTERNAL INTEGER 1011;
+DECLARE FINAL_REJECT_CODE EXTERNAL INTEGER 1012;
+
+
+CREATE PROCEDURE INITIALIZECACHE( )
+BEGIN
+	IF CACHE.WIRECODES.WireCode IS NULL THEN
+		SET CACHE.WIRECODES[]= SELECT A.WireCode , A.Description  FROM Database.dbo.FEDWireTags AS A;
+	END IF;
+	
+	IF CACHE.PROPERTIES.Property IS NULL THEN
+		SET CACHE.PROPERTIES[]= SELECT A.Property , A.Value  FROM Database.dbo.FEDProperties AS A;
+	END IF ;
+	
+	IF CACHE.STATUSCODES.ID IS NULL THEN
+		SET CACHE.STATUSCODES[]= SELECT A.ID , A.Status, A.Description  FROM Database.dbo.FEDStatusCodes AS A;
+	END IF ;
+	
+END;
+
+
+CREATE COMPUTE MODULE WIRE_FRB_TO_FEDLINK_OUTGOING_CONFIRMATION_ESQL_PROCESS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		
+		DECLARE TRANSACTION_STATUS,TRANSACTION_DESCRIPTION,TRANSACTION_STATUS_SUCCESS,TRANSACTION_DESCRIPTION_SUCCESS CHARACTER ;
+		DECLARE TRANSACTION_REJECT_STATUS,TRANSACTION_REJECT_DESCRIPTION,TRANSACTION_REJECT_STATUS_SUCCESS,TRANSACTION_REJECT_DESCRIPTION_SUCCESS CHARACTER;
+		DECLARE REFERENCE_ID,PARSED_MESSAGE,RAW_AMOUNT,PARSED_AMOUNT CHARACTER;
+		DECLARE WIRE_ACK_BLOB BLOB;
+		DECLARE TRANSACTION_UUID_BLOB BLOB ;
+		DECLARE IMAD,OMAD,WIRE_ACK_MESSAGE,DUMMY,TRANSACTION_UUID,ACK_UUID,COMPARE_IMAD CHARACTER;
+		DECLARE TRANSACTION_IDS ROW ;
+		DECLARE RECOGNIZED_WIRE_FLAG,WIRE_REJECT_FLAG BOOLEAN ;
+		
+		CALL INITIALIZECACHE();
+		
+		CALL GET_STATUS_CODE_DESCRIPTION(CACHE.STATUSCODES[1],INITIAL_CODE,TRANSACTION_STATUS,TRANSACTION_DESCRIPTION);
+		CALL GET_STATUS_CODE_DESCRIPTION(CACHE.STATUSCODES[1],FINAL_CODE,TRANSACTION_STATUS_SUCCESS,TRANSACTION_DESCRIPTION_SUCCESS);
+		CALL GET_STATUS_CODE_DESCRIPTION(CACHE.STATUSCODES[1],INITIAL_REJECT_CODE,TRANSACTION_REJECT_STATUS,TRANSACTION_REJECT_DESCRIPTION);
+		CALL GET_STATUS_CODE_DESCRIPTION(CACHE.STATUSCODES[1],FINAL_REJECT_CODE,TRANSACTION_REJECT_STATUS_SUCCESS,TRANSACTION_REJECT_DESCRIPTION_SUCCESS);
+		
+		
+		SET WIRE_ACK_BLOB = InputRoot.BLOB.BLOB ; 
+		SET WIRE_ACK_MESSAGE = CAST( WIRE_ACK_BLOB AS CHAR CCSID InputRoot.Properties.CodedCharSetId Encoding InputRoot.Properties.Encoding);
+		SET ACK_UUID = UUIDASCHAR;
+		SET OutputRoot.BLOB.BLOB = WIRE_ACK_BLOB ;
+		CALL IDENTIFY_WIRE_FLAG(WIRE_ACK_MESSAGE,RECOGNIZED_WIRE_FLAG);
+		
+		IF RECOGNIZED_WIRE_FLAG THEN
+		
+		-- Retrieving / generating the IMAD and OMAD values from the wire ack message 
+		CALL GET_IMAD_FROM_ACK_MESSAGE(WIRE_ACK_MESSAGE,IMAD);
+		CALL GET_OMAD_FROM_ACK_MESSAGE(WIRE_ACK_MESSAGE,OMAD);
+				
+		
+		
+		-- business rules / error handling --
+			SET COMPARE_IMAD  = '%' || IMAD || '%';
+			SET TRANSACTION_IDS.TRANSACTION  = THE (SELECT A.ID  FROM Database.dbo.FEDOrigWire AS A WHERE A.IMAD LIKE COMPARE_IMAD );
+			SET TRANSACTION_UUID_BLOB =  TRANSACTION_IDS.TRANSACTION[1].ID ;   
+			SET OutputRoot.BLOB.BLOB = WIRE_ACK_BLOB ;
+					
+		-- persisting the values to DB with ack message received from the fed and updating against appropriate record
+		
+			IF TRANSACTION_UUID_BLOB IS NOT NULL THEN 
+			
+				SET OMAD = CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS CHARACTER)  || OMAD;
+			    UPDATE Database.dbo.FEDOrigWire AS SP SET OMAD=OMAD , AckMessage = WIRE_ACK_MESSAGE , Status = TRANSACTION_STATUS , Description = TRANSACTION_DESCRIPTION WHERE SP.ID = TRANSACTION_UUID_BLOB;
+				UPDATE Database.dbo.FEDOrigWire AS SP SET Status = TRANSACTION_STATUS_SUCCESS , Description = TRANSACTION_DESCRIPTION_SUCCESS WHERE SP.ID = TRANSACTION_UUID_BLOB ;
+				INSERT INTO Database.dbo.FEDAckWire (AckID,FEDID,Message,DateCreated ) VALUES (ACK_UUID,TRANSACTION_UUID_BLOB,WIRE_ACK_MESSAGE,CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );	
+		-- 
+			ELSE
+			
+			-- this is exceptional case to happen wherein not having the corresponding wire for incoming 
+			-- short ack 
+				SET TRANSACTION_UUID=UUIDASCHAR;
+				SET IMAD = CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS CHARACTER)  || IMAD;
+				SET OMAD = CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS CHARACTER)  || OMAD;
+		 
+				INSERT INTO Database.dbo.FEDOrigWireAudit ( AuditID,DateCreated,Status,Description,AckMessage)
+			 		VALUES (TRANSACTION_UUID,CAST(CURRENT_TIMESTAMP as TIMESTAMP),'POSTED ACK TO FEDWIRE','ACK COULDNT BE MATCHED WITH ANY OUTBOUND WIRE',WIRE_ACK_MESSAGE);
+		/* 		unreachable code for this flow
+				UPDATE Database.dbo.FEDOrigWire AS SP SET Status = TRANSACTION_STATUS_SUCCESS , Description = TRANSACTION_DESCRIPTION_SUCCESS WHERE SP.ID = TRANSACTION_UUID ;
+			*/	
+				INSERT INTO Database.dbo.FEDAckWire (AckID,Message,DateCreated ) VALUES (ACK_UUID,WIRE_ACK_MESSAGE,CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );
+				-- Also update the exceptions at this point to update the scenario of confirmation message could not be mapped to existing orig wires
+				
+				SET TRANSACTION_UUID = UUIDASCHAR;
+				INSERT INTO Database.dbo.FEDExceptions (ID,Message,Reason,DateCreated ) VALUES (TRANSACTION_UUID,WIRE_ACK_MESSAGE,'Wire Confirmation from FRB could not be matched to any existing orig wires',CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );
+		 
+			 	
+			END IF ; 
+		ELSE
+			
+			-- treat all the non wire ack and reject wire acks 
+			CALL IDENTIFY_FRB_WIRE_REJECT_FLAG(WIRE_ACK_MESSAGE,WIRE_REJECT_FLAG);
+			IF WIRE_REJECT_FLAG THEN
+				--- code block to insert new logic 
+				CALL GET_CODE_VALUE_FROM_WIRE(WIRE_ACK_MESSAGE,'1520','{',IMAD);
+				SET TRANSACTION_IDS.TRANSACTION  = THE (SELECT A.ID  FROM Database.dbo.FEDOrigWire AS A WHERE A.IMAD LIKE IMAD );
+				SET TRANSACTION_UUID_BLOB =  TRANSACTION_IDS.TRANSACTION[1].ID ; 
+				
+				--- persisting the changes back to DB for wire rejects
+				IF TRANSACTION_UUID_BLOB IS NOT NULL THEN 
+			
+				UPDATE Database.dbo.FEDOrigWire AS SP SET AckMessage = WIRE_ACK_MESSAGE , Status = TRANSACTION_REJECT_STATUS , Description = TRANSACTION_REJECT_DESCRIPTION WHERE SP.ID = TRANSACTION_UUID_BLOB;
+				UPDATE Database.dbo.FEDOrigWire AS SP SET Status = TRANSACTION_REJECT_STATUS_SUCCESS , Description = TRANSACTION_REJECT_DESCRIPTION_SUCCESS WHERE SP.ID = TRANSACTION_UUID_BLOB ;
+				INSERT INTO Database.dbo.FEDAckWire (AckID,FEDID,Message,DateCreated ) VALUES (ACK_UUID,TRANSACTION_UUID_BLOB,WIRE_ACK_MESSAGE,CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );	
+		-- 
+				ELSE
+			
+				-- this is exceptional case to happen wherein not having the corresponding wire for incoming 
+				-- reject wire messages
+					SET TRANSACTION_UUID=UUIDASCHAR;
+					SET IMAD = CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS CHARACTER)  || IMAD;
+					SET OMAD = CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS CHARACTER)  || OMAD;
+		 
+					INSERT INTO Database.dbo.FEDOrigWireAudit ( AuditID,DateCreated,Status,Description,AckMessage)
+			 		VALUES (TRANSACTION_UUID,CAST(CURRENT_TIMESTAMP as TIMESTAMP),TRANSACTION_REJECT_STATUS_SUCCESS,TRANSACTION_REJECT_DESCRIPTION_SUCCESS,WIRE_ACK_MESSAGE);
+		
+			
+					INSERT INTO Database.dbo.FEDAckWire (AckID,Message,DateCreated ) VALUES (ACK_UUID,WIRE_ACK_MESSAGE,CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );
+					-- Also update the exceptions at this point to update the scenario of confirmation message could not be mapped to existing orig wires
+				
+					SET TRANSACTION_UUID = UUIDASCHAR;
+					INSERT INTO Database.dbo.FEDExceptions (ID,Message,Reason,DateCreated ) VALUES (TRANSACTION_UUID,WIRE_ACK_MESSAGE,'Wire reject from FRB could not be matched to any existing orig wires',CAST(CURRENT_TIMESTAMP AS TIMESTAMP) );
+		 
+				END IF ; 
+				
+				
+				
+			ELSE 
+				
+				SET TRANSACTION_UUID= UUIDASCHAR;
+				INSERT INTO Database.dbo.FEDAckNonWire (ID,Message,DateCreated)
+			 	VALUES (TRANSACTION_UUID , WIRE_ACK_MESSAGE , CAST(CURRENT_TIMESTAMP as TIMESTAMP));
+				SET OutputRoot.BLOB.BLOB = WIRE_ACK_BLOB ; 
+			END IF;
+			
+		END IF;
+		-- immediately update the database with relevant status after posting to downstream 
+			
+			PROPAGATE TO TERMINAL 'out';
+			
+		
+		
+		
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+	
+END MODULE;

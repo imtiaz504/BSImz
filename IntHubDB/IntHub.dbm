@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<xmi:XMI xmlns:datamodelversion="http://www.ibm.com/com.ibm.datatools.core/model/data/1.8.0.0" xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SQLConstraints="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore" xmlns:SQLDataTypes="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore" xmlns:SQLSchema="http:///org/eclipse/datatools/modelbase/sql/schema.ecore" xmlns:SQLTables="http:///org/eclipse/datatools/modelbase/sql/tables.ecore">
+  <SQLSchema:Database xmi:id="_Ne0OEJocEeiQO_wh6J3GrA" name="Database" vendor="SQL Server" version="2012" schemas="_NgdM0JocEeiQO_wh6J3GrA"/>
+  <SQLSchema:Schema xmi:id="_NgdM0JocEeiQO_wh6J3GrA" name="dbo" tables="_eZveIJocEeiQO_wh6J3GrA _X75bgJodEeiQO_wh6J3GrA _UmRFAJo0EeiaGcuMdWl2Xw _meV50Jo0EeiaGcuMdWl2Xw _db2eQJo3EeiaGcuMdWl2Xw _-bwewJpAEeiaGcuMdWl2Xw _SkDCsJpBEeiaGcuMdWl2Xw _KEqmIJpCEeiaGcuMdWl2Xw _empccJpCEeiaGcuMdWl2Xw _poeyMJpCEeiaGcuMdWl2Xw _0qaOkJpCEeiaGcuMdWl2Xw _PYKqILZcEeiAy-UotvOXhQ _5LjGALdjEei3H4oba2PZSg" database="_Ne0OEJocEeiQO_wh6J3GrA"/>
+  <SQLTables:PersistentTable xmi:id="_eZveIJocEeiQO_wh6J3GrA" name="FEDOrigWire" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_iNp0oJocEeiQO_wh6J3GrA" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_lVV-UJocEeiQO_wh6J3GrA" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_mP5iEJocEeiQO_wh6J3GrA" name="ReferenceID">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_rDTmsJocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_uzX_AJocEeiQO_wh6J3GrA" name="Amount">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_wOggQJocEeiQO_wh6J3GrA" name="MONEY" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_xslAwJocEeiQO_wh6J3GrA" name="IMAD">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_znywQJocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_0m3noJocEeiQO_wh6J3GrA" name="OMAD">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_1nc64JocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_2NLeIJocEeiQO_wh6J3GrA" name="Beneficiary">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_4UjaUJocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_5FkAgJocEeiQO_wh6J3GrA" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_6hJNsJocEeiQO_wh6J3GrA" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <columns xmi:id="_68JHoJocEeiQO_wh6J3GrA" name="WireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_8opswJocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_9XMNwJocEeiQO_wh6J3GrA" name="ParsedWireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="__XTrYJocEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_Ak2ckJodEeiQO_wh6J3GrA" name="T24XMLMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_Cnzy0JodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_EGQGwJodEeiQO_wh6J3GrA" name="AckMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_FtyFQJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_GjMDQJodEeiQO_wh6J3GrA" name="FedlineAckMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_IoMn8JodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_JYNIkJodEeiQO_wh6J3GrA" name="PrintedBy">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_K6xukJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_L31zwJodEeiQO_wh6J3GrA" name="PrintedDate">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_Pc518JodEeiQO_wh6J3GrA" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <columns xmi:id="_PyDmkJodEeiQO_wh6J3GrA" name="Status">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_RCAykJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_R1RbgJodEeiQO_wh6J3GrA" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_TInSsJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_kRLyoJocEeiQO_wh6J3GrA" name="dbo.FEDOrigWire_PK" members="_iNp0oJocEeiQO_wh6J3GrA"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_X75bgJodEeiQO_wh6J3GrA" name="FEDOrigWireAudit" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_ctCPQJodEeiQO_wh6J3GrA" name="AuditID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_ej8GgJodEeiQO_wh6J3GrA" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_eyGeUJodEeiQO_wh6J3GrA" name="FEDID">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_gN-mcJodEeiQO_wh6J3GrA" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_ga9SgJodEeiQO_wh6J3GrA" name="WireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_iOtIEJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_i0t_MJodEeiQO_wh6J3GrA" name="AckMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_k5IG8JodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="__wKpgJ-9Eeiat8n8Wrdsrg" name="T24XMLMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_BTk9AJ--Eeiat8n8Wrdsrg" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_mBHpwJodEeiQO_wh6J3GrA" name="Status">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_nWqgYJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_n-Qr4JodEeiQO_wh6J3GrA" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_peehcJodEeiQO_wh6J3GrA" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_qIMz4JodEeiQO_wh6J3GrA" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_rX0osJodEeiQO_wh6J3GrA" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_dhWBEJodEeiQO_wh6J3GrA" name="dbo.FEDOrigWireAudit_PK" members="_ctCPQJodEeiQO_wh6J3GrA"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_UmRFAJo0EeiaGcuMdWl2Xw" name="FEDWireTags" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_WU80YJo0EeiaGcuMdWl2Xw" name="WireCode" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_X4qp4Jo0EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_YnQOMJo0EeiaGcuMdWl2Xw" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_Z1mQoJo0EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="100"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_W_CTMJo0EeiaGcuMdWl2Xw" name="FEDWireCodes_PK" members="_WU80YJo0EeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_meV50Jo0EeiaGcuMdWl2Xw" name="FEDOrigNonWire" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_qv1kMJo0EeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_sSRAQJo0EeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_sjWJMJo0EeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_t3AwgJo0EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_ucYHYJo0EeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_wlhlMJo0EeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_rPQEEJo0EeiaGcuMdWl2Xw" name="FEDOrigNonWire_PK" members="_qv1kMJo0EeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_db2eQJo3EeiaGcuMdWl2Xw" name="FEDAdvice" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_db2eQZo3EeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eQpo3EeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_db2eQ5o3EeiaGcuMdWl2Xw" name="ReferenceID">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eRJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_db2eRZo3EeiaGcuMdWl2Xw" name="Amount">
+      <containedType xsi:type="SQLDataTypes:FixedPrecisionDataType" xmi:id="_db2eRpo3EeiaGcuMdWl2Xw" name="MONEY" primitiveType="NUMERIC"/>
+    </columns>
+    <columns xmi:id="_db2eR5o3EeiaGcuMdWl2Xw" name="IMAD">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eSJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_db2eSZo3EeiaGcuMdWl2Xw" name="OMAD">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eSpo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_db2eS5o3EeiaGcuMdWl2Xw" name="Beneficiary">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eTJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_db2eTZo3EeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_db2eTpo3EeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <columns xmi:id="_db2eT5o3EeiaGcuMdWl2Xw" name="WireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eUJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_db2eUZo3EeiaGcuMdWl2Xw" name="ParsedWireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eUpo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_db2eU5o3EeiaGcuMdWl2Xw" name="T24ConfirmXMLMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eVJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_db2eWZo3EeiaGcuMdWl2Xw" name="PrintedBy">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eWpo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_db2eW5o3EeiaGcuMdWl2Xw" name="PrintedDate">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_db2eXJo3EeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <columns xmi:id="_db2eXZo3EeiaGcuMdWl2Xw" name="Status">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eXpo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_db2eX5o3EeiaGcuMdWl2Xw" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_db2eYJo3EeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="50"/>
+    </columns>
+    <columns xmi:id="_YjaNwJrpEeiuD71E8aBe5g" name="DuplicateWireFlag">
+      <containedType xsi:type="SQLDataTypes:IntegerDataType" xmi:id="_adEeEJrpEeiuD71E8aBe5g" name="BIT" primitiveType="INTEGER"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_db2eYZo3EeiaGcuMdWl2Xw" name="dbo.FEDOrigWire_PK" members="_db2eQZo3EeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_-bwewJpAEeiaGcuMdWl2Xw" name="FEDAckNonWire" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_CCvMgJpBEeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_DEI_IJpBEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_DY5HIJpBEeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_GEl4YJpBEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_GqDV4JpBEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_IOVzIJpBEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_EIIywJpBEeiaGcuMdWl2Xw" name="FEDAckNonWire_PK" members="_CCvMgJpBEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_SkDCsJpBEeiaGcuMdWl2Xw" name="FEDAckWire" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_XIAWEJpBEeiaGcuMdWl2Xw" name="AckID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_ZoWy8JpBEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_Z3RYsJpBEeiaGcuMdWl2Xw" name="FEDID">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_a5hf4JpBEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_bO4r4JpBEeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_cc4wEJpBEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_dKF0UJpBEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_ekxpoJpBEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_Y-Yo4JpBEeiaGcuMdWl2Xw" name="FEDAckWire_PK" members="_XIAWEJpBEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_KEqmIJpCEeiaGcuMdWl2Xw" name="FEDAdviceAudit" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_NHnZwJpCEeiaGcuMdWl2Xw" name="AuditID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_OEtUIJpCEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_PnShMJpCEeiaGcuMdWl2Xw" name="FEDID">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_QtKkIJpCEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_Q9h7YJpCEeiaGcuMdWl2Xw" name="WireMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_SeVm0JpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_TEiEIJpCEeiaGcuMdWl2Xw" name="T24ConfirmXMLMessage">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_VbWKgJpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_WPHJwJpCEeiaGcuMdWl2Xw" name="Status">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_XpCKEJpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_YWd30JpCEeiaGcuMdWl2Xw" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_Z1rn0JpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_ed_6IJprEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_ft9GIJprEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_OzmacJpCEeiaGcuMdWl2Xw" name="FEDAdviceAudit_PK" members="_NHnZwJpCEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_empccJpCEeiaGcuMdWl2Xw" name="FEDBroadcast" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_empccZpCEeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_empccppCEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_empcc5pCEeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_empcdJpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_empcdZpCEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_empcdppCEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_empcd5pCEeiaGcuMdWl2Xw" name="FEDOrigNonWire_PK" members="_empccZpCEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_poeyMJpCEeiaGcuMdWl2Xw" name="FEDStatements" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_poeyMZpCEeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_poeyMppCEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_poeyM5pCEeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_poeyNJpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_poeyNZpCEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_poeyNppCEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_poeyN5pCEeiaGcuMdWl2Xw" name="FEDOrigNonWire_PK" members="_poeyMZpCEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_0qaOkJpCEeiaGcuMdWl2Xw" name="FEDExceptions" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_3F710JpCEeiaGcuMdWl2Xw" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_4jxs0JpCEeiaGcuMdWl2Xw" name="UNIQUEIDENTIFIER" primitiveType="CHARACTER_VARYING"/>
+    </columns>
+    <columns xmi:id="_44ib4JpCEeiaGcuMdWl2Xw" name="Message">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_6ThMIJpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="-1"/>
+    </columns>
+    <columns xmi:id="_7fIDoJpCEeiaGcuMdWl2Xw" name="Reason">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_9GBI8JpCEeiaGcuMdWl2Xw" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="300"/>
+    </columns>
+    <columns xmi:id="_-kD0QJpCEeiaGcuMdWl2Xw" name="DateCreated">
+      <containedType xsi:type="SQLDataTypes:DateDataType" xmi:id="_ABgCoJpDEeiaGcuMdWl2Xw" name="DATETIME" primitiveType="DATE"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_3gCX4JpCEeiaGcuMdWl2Xw" name="FEDExceptions_PK" members="_3F710JpCEeiaGcuMdWl2Xw"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_PYKqILZcEeiAy-UotvOXhQ" name="FEDStatusCodes" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_W9xwoLZcEeiAy-UotvOXhQ" name="ID" nullable="false">
+      <containedType xsi:type="SQLDataTypes:IntegerDataType" xmi:id="_ZRNy4LZcEeiAy-UotvOXhQ" name="INT" primitiveType="INTEGER"/>
+    </columns>
+    <columns xmi:id="_ZfNyoLZcEeiAy-UotvOXhQ" name="Status">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_agiFsLZcEeiAy-UotvOXhQ" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_bOSjkLZcEeiAy-UotvOXhQ" name="Description">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_ciLNULZcEeiAy-UotvOXhQ" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_XnQLcLZcEeiAy-UotvOXhQ" name="FEDStatusCodes_PK" members="_W9xwoLZcEeiAy-UotvOXhQ"/>
+  </SQLTables:PersistentTable>
+  <SQLTables:PersistentTable xmi:id="_5LjGALdjEei3H4oba2PZSg" name="FEDProperties" schema="_NgdM0JocEeiQO_wh6J3GrA">
+    <columns xmi:id="_7cTAoLdjEei3H4oba2PZSg" name="Property" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="__J8-ILdjEei3H4oba2PZSg" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <columns xmi:id="_AGVG0LdkEei3H4oba2PZSg" name="Value" nullable="false">
+      <containedType xsi:type="SQLDataTypes:CharacterStringDataType" xmi:id="_BiuMULdkEei3H4oba2PZSg" name="VARCHAR" primitiveType="CHARACTER_VARYING" length="200"/>
+    </columns>
+    <constraints xsi:type="SQLConstraints:PrimaryKey" xmi:id="_-dL-wLdjEei3H4oba2PZSg" name="FEDProperties_PK" members="_7cTAoLdjEei3H4oba2PZSg"/>
+  </SQLTables:PersistentTable>
+</xmi:XMI>

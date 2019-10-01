@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="COM.WIRE.FEDLINK.TO.T24.INCOMING" version="8.0.5.0" xmlns:map="COM.WIRE.FEDLINK.TO.T24.INCOMING">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <output path="/FUNDSTRANSFERFEDLINKOFSRequestType.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="out3" uri="http://www.temenos.com/T24/ofs/Request"/>
+        <namespace kind="supplement" prefix="out2" uri="http://www.temenos.com/T24/ofs/RequestCommon"/>
+        <namespace kind="supplement" prefix="out" uri="http://www.temenos.com/T24/ofs/FUNDSTRANSFERFEDLINKOFSType"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="WIRE_FEDLINK_TO_T24_INCOMING_Mapping">
+        <input path="mb:msg(BLOB,assembly,BLOB,Properties)" var="ComIbmMessageAssembly_BLOB"/>
+        <output namespace="http://www.temenos.com/T24/ofs/Request" path="mb:msg(FUNDSTRANSFERFEDLINKOFSRequest,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_FUNDSTRANSFERFEDLINKOFSRequest"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <output path="$ComIbmMessageAssembly_FUNDSTRANSFERFEDLINKOFSRequest/Properties"/>
+        </move>
+        <assign value="OFSUSER1">
+            <output path="$ComIbmMessageAssembly_FUNDSTRANSFERFEDLINKOFSRequest/FUNDSTRANSFERFEDLINKOFSRequest/RequestCommon/UserName"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>
